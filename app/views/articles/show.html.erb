@@ -8,7 +8,7 @@
        <a href="<%= articles_path %>" class="text-secondary me-2">Brows Articles</a>
        <a href="<%= edit_article_path(@article) %>" class="text-dark">Continue Editing</a>
      </div>
-     <%= button_to 'Delete', article_path(@article), class:'btn btn-danger btn-rounded', method: :delete %>
+     <%= button_to 'Delete', article_path(@article), class:'btn btn-danger btn-rounded', method: :delete, data:{confirm: "Are You sure?"} %>
    </div>
   </div>
 </div>
