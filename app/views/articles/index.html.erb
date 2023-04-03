@@ -1,34 +1,47 @@
-<div class="container">
-  <div class="post">
-    <h1>All Articles</h1>
-    <h4 class="h4">Posted Articles : <span class="badge badge-success text-success"><%= @articles.count %></span></h4>
-
-    <% @articles.each do |article| %>
-      <div class="card mb-2">
-        <div class="card-header d-flex align-items-center justify-content-between">
-          <div class="card-action">Posted: 30 Sec Ago</div>
-          <div class="dropdown">
-            <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false"></a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<%= article_path(article) %>">View Article</a></li>
-              <li><a class="dropdown-item" href="<%= edit_article_path(article) %>">Edit Article</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="#">Delete Article</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-content">
-            <p><%= article.description %></p>
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <div class="pull-right">Published by: Bilal Hussain</div>
-        </div>
-      </div>
-    <%end %>
+<% if @articles.count === 0 %>
+  <div class="card p-5 d-flex align-items-center justify-content-center flex-direction-column not_posted border-0">
+    <h3 class="h3">Not Yet Posted</h3>
+    <p class="lead">There is not post listed yet. Start publishing by click at below.</p>
+    <a href="<%= new_article_path %>" class="btn btn-warning btn-lg btn-rounded">Start Publishing</a>
   </div>
-</div>
+  <%else %>
+  <div class="container-post">
+    <div class="post">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h4 class="h4 d-flex align-items-center">Posted Articles : <span class="badge badge-success text-success"><%= @articles.count %></span></h4>
+        <a class="btn btn-sm btn-rounded btn-warning" href="<%= new_article_path %>">New Post</a>
+      </div>
+      <% @articles.each do |article| %>
+        <div class="card mb-2">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <div class="card-action">Posted: 30 Sec Ago</div>
+            <div class="dropdown">
+              <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false"></a>
+
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="<%= article_path(article) %>">View Article</a></li>
+                <li><a class="dropdown-item" href="<%= edit_article_path(article) %>">Edit Article</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <%= button_to "Delete", article_path(article), class:'dropdown-item text-danger', method: :delete,
+                                data:{confirm: 'Are you sure you want to delete?'}
+                  %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <p><%= article.description %></p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="pull-right">Published by: Bilal Hussain</div>
+          </div>
+        </div>
+      <%end %>
+    </div>
+  </div>
+<%end %>

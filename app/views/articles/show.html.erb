@@ -1,6 +1,14 @@
-<h1>Show Article Page</h1>
-
-<div>
-  <h3><%= @article.title %></h3>
-  <p><%= @article.description %></p>
+<div class="container-post">
+  <div>
+    <h3><%= @article.title %></h3>
+    <p><%= @article.description %></p>
+    <hr>
+   <div class="d-flex align-items-center justify-content-between">
+     <div class="">
+       <a href="<%= articles_path %>" class="text-secondary me-2">Brows Articles</a>
+       <a href="<%= edit_article_path(@article) %>" class="text-dark">Continue Editing</a>
+     </div>
+     <%= button_to 'Delete', article_path(@article), class:'btn btn-danger btn-rounded', method: :delete %>
+   </div>
+  </div>
 </div>
