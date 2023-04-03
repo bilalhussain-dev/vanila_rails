@@ -10,6 +10,10 @@
     margin: 40px auto;
 }
 
+.form__auth {
+    width: 50%;
+    margin: 40px auto;
+}
 .header__secondary {
     height: 300px;
     width: 80%;
@@ -36,4 +40,8 @@
 
 .btn-cst {
     width: 300px;
+}
+
+.btn-flex {
+    width: 100%;
 }
