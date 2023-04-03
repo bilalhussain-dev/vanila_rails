@@ -14,7 +14,7 @@
       <% @articles.each do |article| %>
         <div class="card mb-2">
           <div class="card-header d-flex align-items-center justify-content-between">
-            <div class="card-action">Posted: 30 Sec Ago</div>
+            <div class="card-action">Posted: <%= time_ago_in_words(article.created_at) %> ago</div>
             <div class="dropdown">
               <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                  aria-expanded="false"></a>
@@ -33,12 +33,15 @@
           </div>
           <div class="card-body">
             <div class="card-content">
-              <p><%= article.description %></p>
+              <h3 class="h3 text-dark"><%= article.title %></h3>
+              <p>
+                <%= truncate(article.description, length: 100) %>
+              </p>
             </div>
           </div>
 
           <div class="card-footer">
-            <div class="pull-right">Published by: Bilal Hussain</div>
+            <div class="pull-right">Published by: <%= article.user.username %></div>
           </div>
         </div>
       <%end %>
